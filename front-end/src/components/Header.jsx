@@ -1,17 +1,22 @@
 import React from 'react';
-import { Container } from '@mui/material';
-import { StyledAppBar, StyledToolbar, LogoBox } from '../styles/HeaderStyles';
+import { AppBar, Toolbar, Box, Button } from '@mui/material';
+import { StyledAppBar, StyledToolbar, LogoBox, MenuBox } from '../styles/HeaderStyles';
 
 const Header = () => {
   return (
-    <StyledAppBar>
-      <Container>
-        <StyledToolbar>
-          <LogoBox>
-            <img src="/images/passeverde.svg" alt="Logo" />
-          </LogoBox>
-        </StyledToolbar>
-      </Container>
+    <StyledAppBar position="static">
+      <StyledToolbar>
+        <LogoBox>
+          <img src="/images/logo.svg" alt="Logo" />
+        </LogoBox>
+        <MenuBox>
+          <Button color="inherit">Home</Button>
+          <Button color="inherit">Sobre</Button>
+          <Button color="inherit">Depoimentos</Button>
+          <Button color="inherit">FAQ</Button>
+          <Button color="inherit">Contato</Button>
+        </MenuBox>
+      </StyledToolbar>
     </StyledAppBar>
   );
 };

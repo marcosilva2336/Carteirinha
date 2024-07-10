@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container } from '@mui/material';
-import { HeroSection, HeroTitle, HeroSubtitle, CTAButtonStyled } from '../styles/HomeIntroStyles';
+import { Container, Typography, Grid, Button, Box } from '@mui/material';
+import { HeroSection, HeroTitle, HeroSubtitle, HeroImage, TextContainer, CTAButtonStyled } from '../styles/HomeIntroStyles';
 import { useRouter } from 'next/router';
 
 const HomeIntro = () => {
@@ -13,15 +13,24 @@ const HomeIntro = () => {
   return (
     <HeroSection>
       <Container>
-        <HeroTitle>
-          Bem-vindo ao My Wallet App
-        </HeroTitle>
-        <HeroSubtitle>
-          Crie sua carteira eletrônica de acesso de forma rápida e fácil!
-        </HeroSubtitle>
-        <CTAButtonStyled onClick={handleCreateCard}>
-          CRIE SEU CARTÃO
-        </CTAButtonStyled>
+        <Grid container alignItems="center" spacing={8}>
+          <Grid item xs={12} md={6}>
+            <TextContainer>
+              <HeroTitle>
+                Bem-vindo ao Carteirinha
+              </HeroTitle>
+              <HeroSubtitle>
+                Crie sua carteira eletrônica de acesso de forma rápida e fácil!
+              </HeroSubtitle>
+              <CTAButtonStyled onClick={handleCreateCard}>
+                CRIE SEU CARTÃO
+              </CTAButtonStyled>
+            </TextContainer>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <HeroImage src="/images/hero-image.svg" alt="Hero Image" />
+          </Grid>
+        </Grid>
       </Container>
     </HeroSection>
   );
