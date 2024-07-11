@@ -1,42 +1,46 @@
 import { styled } from '@mui/system';
-import { Box,Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 export const AboutSectionStyled = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(10, 2),
-  backgroundColor: '#FFFFFF', // Branco
-  textAlign: 'center',
-}));
-
-export const AboutImage = styled(Box)(({ theme }) => ({
-  '& img': {
-    width: '100%',
-    maxWidth: 450,
+  backgroundColor: '#FBFCFE', // Cor de fundo igual à da HomeIntro
+  padding: '1rem', // Ajuste para responsividade',
+  [theme.breakpoints.up('sm')]: {
+    padding: '0',
   },
-}));
-
-export const AboutText = styled(Box)(({ theme }) => ({
-  textAlign: 'left',
-  color: '#666666', // Cinza Médio
-  marginTop: theme.spacing(2),
+  [theme.breakpoints.up('md')]: {
+    padding: '80.823px 190px',
+  },
 }));
 
 export const AboutTitle = styled(Typography)(({ theme }) => ({
-  fontSize: '1.6rem !important',
-  fontWeight: '600',
-  color: '#4D4D4D',
-  fontFamily: 'Inter, sans-serif',
-  marginBottom: theme.spacing(2),
+  fontSize: '2rem',
+  fontWeight: 'bold',
+  fontFamily: 'Roboto Slab, sans-serif !important',
+  color: '#486FCA',
+  background: 'linear-gradient(239deg, #476FD6 10%, #1C3F99 90%)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  marginBottom: '2rem',
+  textAlign: 'left',
   [theme.breakpoints.up('md')]: {
-    fontSize: '1.6rem !important',
+    fontSize: '3rem',
   },
 }));
 
-export const AboutDescription = styled(Typography)(({ theme }) => ({
-  fontSize: '1.2rem !important',
-  color: '#4D4D4D',
-  textAlign: 'justify',
-  fontFamily: 'Inter, sans-serif',
-  [theme.breakpoints.up('md')]: {
-    fontSize: '1rem !important',
-  },
+export const AboutText = styled(Typography)(({ theme }) => ({
+  fontSize: '1rem',
+  fontWeight: '400', 
+  color: '#15213F', // Cinza escuro
+  marginBottom: '1rem',
+}));
+
+export const AboutSubTitle = styled(Typography)(({ theme }) => ({
+  fontSize: '1.3rem',
+  textAlign: 'left',
+  fontFamily: 'Roboto Slab, sans-serif !important',
+  fontWeight: '500',
+  background: 'linear-gradient(239deg, #476FD6 10%, #1C3F99 90%)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  marginBottom: '1rem',
 }));

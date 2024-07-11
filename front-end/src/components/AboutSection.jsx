@@ -1,27 +1,44 @@
 import React from 'react';
-import { Container, Grid } from '@mui/material';
-import { AboutSectionStyled, AboutImage, AboutText, AboutTitle , AboutDescription } from '../styles/AboutSectionStyles';
+import { Container, Box, Grid, Typography } from '@mui/material';
+import { AboutSectionStyled, AboutTitle, AboutText , AboutSubTitle} from '../styles/AboutSectionStyles';
 
 const AboutSection = () => {
   return (
     <AboutSectionStyled>
       <Container>
-        <Grid container spacing={1} alignItems="center">
-          <Grid item xs={12} md={6}>
-            <AboutImage>
-              <img src="/images/sobre.svg" alt="Logo Carteirinha" />
-            </AboutImage>
+        <AboutTitle variant="h4" align="center" gutterBottom>
+          Sobre o Aplicativo
+        </AboutTitle>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            <Box>
+              < AboutSubTitle variant="h6" gutterBottom>
+                O Que É
+              </ AboutSubTitle>
+              <AboutText variant="body1">
+                A Carteirinha é um aplicativo que permite criar e armazenar sua identidade digital de forma segura e conveniente.
+              </AboutText>
+            </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <AboutText>
-            <AboutTitle>
-            Sobre a Carteirinha
-          </AboutTitle>
-          <AboutDescription>
-            A Carteirinha é uma aplicação que permite que você crie e gerencie suas carteiras de documentos eletrônicos de forma fácil e segura.
-            Nossa missão é simplificar a organização dos seus documentos importantes, proporcionando acesso rápido e seguro a qualquer momento.
-          </AboutDescription>
-            </AboutText>
+          <Grid item xs={12} md={4}>
+            <Box>
+              < AboutSubTitle variant="h6" gutterBottom>
+                Principais Recursos
+              </ AboutSubTitle>
+              <AboutText variant="body1">
+                Acesso rápido a seus documentos, autenticação biométrica, e integração com serviços online.
+              </AboutText>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box>
+              < AboutSubTitle variant="h6" gutterBottom>
+                Benefícios
+              </ AboutSubTitle>
+              <AboutText variant="body1">
+                Praticidade, segurança e controle total sobre seus documentos pessoais.
+              </AboutText>
+            </Box>
           </Grid>
         </Grid>
       </Container>

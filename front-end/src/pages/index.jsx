@@ -6,16 +6,18 @@ import AboutSection from '../components/AboutSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import FAQSection from '../components/FAQSection';
 import ContactSection from '../components/ContactSection';
-import ClientsSection from '../components/ClientsSection';
+import HowItWorksSection from '../components/HowItWorksSection';
+import BenefitsSection from '../components/BenefitsSection';
 
 const HomePage = () => {
   return (
     <>
-      <Header />
+
       <HomeIntro />  
-      <ClientsSection />
       <AboutSection />
       <FeaturesSection />
+      <HowItWorksSection />
+      <BenefitsSection />
       <TestimonialsSection />
       <FAQSection />
       <ContactSection />
