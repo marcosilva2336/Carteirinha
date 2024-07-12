@@ -16,6 +16,10 @@ const HomeIntro = () => {
     router.push('/create-card'); // Redirecionando para a rota create-card
   };
 
+  const handleConsultCardClick = () => {
+    router.push('/consult-card'); // Redirecionando para a rota consult-card
+  };
+
   return (
     <HeroSection>
       <Container>
@@ -28,7 +32,7 @@ const HomeIntro = () => {
           </HeroSubtitle>
           <ButtonContainer>
             <CTAButtonStyled variant="contained" onClick={handleCreateCardClick}>Criar minha carteirinha</CTAButtonStyled>
-            <LearnMoreButtonStyled variant="outlined">Saiba Mais</LearnMoreButtonStyled>
+            <LearnMoreButtonStyled variant="outlined" onClick={handleConsultCardClick}>Acessar meu cartão</LearnMoreButtonStyled>
           </ButtonContainer>
         </TextContainer>
       </Container>
