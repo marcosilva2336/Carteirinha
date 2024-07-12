@@ -2,18 +2,18 @@ import React, { useContext } from 'react';
 import { TextField } from '@mui/material';
 import { CardContext } from '../context/CardContext';
 
-const NameInput = () => {
-  const { name, setName } = useContext(CardContext);
+const CpfInput = () => {
+  const { cpf, setCpf } = useContext(CardContext);
 
   return (
     <TextField
-      label="Nome"
+      label="CPF"
       variant="outlined"
       fullWidth
-      value={name}
-      onChange={(e) => setName(e.target.value)}
+      value={cpf}
+      onChange={(e) => setCpf(e.target.value)}
     />
   );
 };
 
-export default NameInput;
+export default CpfInput;

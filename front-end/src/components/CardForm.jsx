@@ -1,21 +1,27 @@
 import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router'; 
-import { Container, Typography, Box, Alert } from '@mui/material';
+import { Container, Typography, Box, Alert, Grid, Checkbox, FormControlLabel } from '@mui/material';
 import NameInput from './NameInput';
 import UploadButton from './UploadButton';
 import SaveButton from './SaveButton';
-import { FormContainer, FormGridContainer, UploadWrapper } from '../styles/CardFormStyles';
+import CpfInput from './CpfInput';
+import { FormContainer, FormGridContainer, UploadWrapper, PreviewImage, PageContainer } from '../styles/CardFormStyles';
 import { CardContext } from '../context/CardContext';
 
 const CardForm = () => {
   const { name, photo, setExpiryDate } = useContext(CardContext);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const router = useRouter(); 
 
   const handleSave = () => {
     if (!name || !photo) {
       setError('Por favor, preencha todos os campos.');
+      return;
+    }
+    if (!termsAccepted) {
+      setError('Você deve aceitar os termos.');
       return;
     }
     setExpiryDate(new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)); // 1 year from now
@@ -26,7 +32,7 @@ const CardForm = () => {
   };
 
   return (
-    <Container maxWidth="sm">
+    <PageContainer>
       <FormContainer>
         <Typography variant="h5" gutterBottom>
           Crie seu Cartão de Acesso
@@ -41,17 +47,35 @@ const CardForm = () => {
             <Alert severity="success">Cartão criado com sucesso!</Alert>
           </Box>
         )}
+        {photo && (
+          <Box mb={3} display="flex" justifyContent="center">
+            <PreviewImage src={photo} alt="Pré-visualização da foto do cartão" />
+          </Box>
+        )}
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <NameInput />
+          </Grid>
+          <Grid item xs={12}>
+            <CpfInput />
+          </Grid>
+        </Grid>
         <Box mt={3}>
-          <NameInput />
+          <FormControlLabel
+            control={<Checkbox checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} />}
+            label="Aceito os termos"
+          />
         </Box>
         <FormGridContainer>
           <UploadWrapper>
             <UploadButton />
           </UploadWrapper>
-          <SaveButton onClick={handleSave} />
+          <UploadWrapper>
+            <SaveButton onClick={handleSave} />
+          </UploadWrapper>
         </FormGridContainer>
       </FormContainer>
-    </Container>
+    </PageContainer>
   );
 };
 
