@@ -24,11 +24,11 @@ export const Overlay = styled(Box)({
   right: 0,
   bottom: 0,
   backgroundColor: 'rgba(255, 255, 255, 0.7)',
-  zIndex: 1,
+  zIndex: 0,
 });
 
 export const BenefitsTitle = styled(Typography)(({ theme }) => ({
-  fontSize: '3rem',
+  fontSize: '2.4rem',
   fontWeight: 'bold',
   fontFamily: 'Roboto Slab, sans-serif !important',
   background: 'linear-gradient(239deg, #476FD6 50%, #1C3F99 90%)',
@@ -38,6 +38,10 @@ export const BenefitsTitle = styled(Typography)(({ theme }) => ({
   position: 'relative',
   zIndex: 2,
   textAlign: 'left',
+  [theme.breakpoints.up('md')]: {
+    textAlign: 'left',
+    fontSize: '3rem',
+  },
 }));
 
 export const BenefitCard = styled(Box)(({ theme }) => ({

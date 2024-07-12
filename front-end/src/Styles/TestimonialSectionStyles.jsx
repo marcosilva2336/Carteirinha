@@ -8,13 +8,16 @@ export const TestimonialSectionStyled = styled(Box)(({ theme }) => ({
 }));
 
 export const TestimonialTitle = styled(Typography)(({ theme }) => ({
-  fontSize: '3rem',
+  fontSize: '2.5rem',
   fontWeight: 'bold',
   fontFamily: 'Roboto Slab, sans-serif !important',
   background: 'linear-gradient(239deg, #476FD6 50%, #1C3F99 90%)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   marginBottom: '2rem',
+  [theme.breakpoints.up('md')]: {
+    fontSize: '3rem',
+  },
 }));
 
 export const TestimonialCard = styled(Card)(({ theme }) => ({

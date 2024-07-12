@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { Container, Grid, Box, Typography, Card, CardContent } from '@mui/material';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
@@ -6,6 +8,10 @@ import BadgeIcon from '@mui/icons-material/Badge';
 import { HowItWorksSectionStyled, HowItWorksTitle, IconStyle } from '../styles/HowItWorksSectionStyles';
 
 const HowItWorksSection = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <HowItWorksSectionStyled>
       <Container>
@@ -13,7 +19,7 @@ const HowItWorksSection = () => {
           Como Funciona
         </HowItWorksTitle>
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={4} data-aos="fade-up">
             <Card>
               <CardContent>
                 <Box textAlign="center" mb={2}>
@@ -28,7 +34,7 @@ const HowItWorksSection = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={4} data-aos="fade-up">
             <Card>
               <CardContent>
                 <Box textAlign="center" mb={2}>
@@ -43,7 +49,7 @@ const HowItWorksSection = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={4} data-aos="fade-up">
             <Card>
               <CardContent>
                 <Box textAlign="center" mb={2}>
@@ -53,7 +59,7 @@ const HowItWorksSection = () => {
                   Cartão Virtual
                 </Typography>
                 <Typography variant="body1">
-                Tenha seu cartão disponivel no celular.
+                  Tenha seu cartão disponivel no celular.
                 </Typography>
               </CardContent>
             </Card>

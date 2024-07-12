@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { Container, Grid, CardContent, Box } from '@mui/material';
 import { TestimonialSectionStyled, TestimonialTitle, TestimonialCard, TestimonialAvatar, TestimonialContent, TestimonialName } from '../styles/TestimonialSectionStyles';
 
@@ -21,6 +23,10 @@ const testimonials = [
 ];
 
 const TestimonialSection = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <TestimonialSectionStyled>
       <Container>
@@ -29,7 +35,7 @@ const TestimonialSection = () => {
         </TestimonialTitle>
         <Grid container spacing={4}>
           {testimonials.map((testimonial, index) => (
-            <Grid item xs={12} sm={4} key={index}>
+            <Grid item xs={12} sm={4} key={index} data-aos="fade-up">
               <TestimonialCard>
                 <CardContent>
                   <TestimonialContent variant="body1" gutterBottom>

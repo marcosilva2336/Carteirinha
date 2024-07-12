@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { Grid, Box, Container, Typography } from '@mui/material';
 import {
   FeaturesSectionStyled,
@@ -11,6 +13,10 @@ import {
 } from '../styles/FeaturesSectionStyles';
 
 const FeaturesSection = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <FeaturesSectionStyled>
       <InnerContainer maxWidth="md">
@@ -19,7 +25,7 @@ const FeaturesSection = () => {
         </FeaturesTitle>
         <Grid container spacing={4} direction="column">
           <Grid item xs={12}>
-            <FeatureItem>
+            <FeatureItem data-aos="fade-up">
               <FeatureNumber>1</FeatureNumber>
               <Box>
                 <FeatureTitle>Armazenamento Seguro</FeatureTitle>
@@ -30,7 +36,7 @@ const FeaturesSection = () => {
             </FeatureItem>
           </Grid>
           <Grid item xs={12}>
-            <FeatureItem>
+            <FeatureItem data-aos="fade-up">
               <FeatureNumber>2</FeatureNumber>
               <Box>
                 <FeatureTitle>Autenticação Biométrica</FeatureTitle>
@@ -41,7 +47,7 @@ const FeaturesSection = () => {
             </FeatureItem>
           </Grid>
           <Grid item xs={12}>
-            <FeatureItem>
+            <FeatureItem data-aos="fade-up">
               <FeatureNumber>3</FeatureNumber>
               <Box>
                 <FeatureTitle>Documentos Digitais</FeatureTitle>
@@ -52,7 +58,7 @@ const FeaturesSection = () => {
             </FeatureItem>
           </Grid>
           <Grid item xs={12}>
-            <FeatureItem>
+            <FeatureItem data-aos="fade-up">
               <FeatureNumber>4</FeatureNumber>
               <Box>
                 <FeatureTitle>Integração com Serviços</FeatureTitle>

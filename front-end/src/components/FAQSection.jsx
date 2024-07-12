@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { Container, Grid, Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { FAQSectionStyled, FAQTitle, FAQCard, FAQContent, FAQImage } from '../styles/FAQSectionStyles';
 
 const FAQSection = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <FAQSectionStyled>
       <Container>
         <Grid container spacing={4}>
-        
           <Grid item xs={12} md={6}>
-            <FAQImage src="/images/icebreaker.avif" alt="Imagem de fundo" />
+            <FAQImage src="/images/icebreaker.avif" alt="Imagem de fundo" data-aos="fade-up" />
           </Grid>
           <Grid item xs={12} md={6}>
-            <FAQContent>
-            <FAQTitle variant="h4" align="center" gutterBottom>
-              Perguntas Frequentes
-            </FAQTitle>
+            <FAQContent data-aos="fade-up">
+              <FAQTitle variant="h4" align="center" gutterBottom>
+                Perguntas Frequentes
+              </FAQTitle>
               <FAQCard>
                 <Accordion>
                   <AccordionSummary expandIcon={<ExpandMoreIcon />}>

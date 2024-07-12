@@ -11,7 +11,7 @@ export const HeroSection = styled(Box)(({ theme }) => ({
     textAlign: 'left'
   },
   [theme.breakpoints.up('md')]: {
-    padding: '140px 185px',
+    padding: '140px 180px',
     flexDirection: 'row',
     justifyContent: 'center',
     textAlign: 'left',
