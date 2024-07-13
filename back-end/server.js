@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');  // Importe o pacote cors
 const userRoutes = require('./routes/userRoutes');
 const s3Client = require('./config/s3');
 const { ListBucketsCommand } = require('@aws-sdk/client-s3');
@@ -9,6 +10,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());  // Use o middleware cors
 
 app.use('/api/users', userRoutes);
 
