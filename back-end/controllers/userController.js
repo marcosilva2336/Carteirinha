@@ -1,5 +1,5 @@
 const userService = require('../services/userService');
-const s3 = require('../config/s3');
+const uploadService = require('../services/uploadService');
 
 exports.createUser = async (req, res) => {
   const { name, cpf } = req.body;
@@ -27,19 +27,14 @@ exports.getUserByCPF = async (req, res) => {
 };
 
 exports.uploadPhoto = async (req, res) => {
-  const { file } = req;
-
-  const params = {
-    Bucket: process.env.AWS_BUCKET_NAME,
-    Key: file.originalname,
-    Body: file.buffer,
-    ContentType: file.mimetype,
-  };
+  if (!req.file) {
+    return res.status(400).send({ error: 'Nenhum arquivo enviado' });
+  }
 
   try {
-    const data = await s3.upload(params).promise();
-    res.status(200).json({ message: 'File uploaded successfully', data });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const result = await uploadService.uploadFile(req.file.buffer, req.file.originalname, req.file.mimetype);
+    res.status(200).send({ message: 'Upload realizado com sucesso', data: result });
+  } catch (error) {
+    res.status(500).send({ error: 'Erro ao salvar o arquivo no S3', details: error.message });
   }
 };

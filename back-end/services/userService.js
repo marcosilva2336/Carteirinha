@@ -2,13 +2,15 @@ const User = require('../models/user');
 const calculateValidity = require('../utils/calculateValidity');
 
 const createUser = async (name, cpf) => {
-  const validityDate = calculateValidity();
-  const user = new User({ name, cpf, validity: validityDate });
-  return await user.save();
+  const validity = calculateValidity();
+  const newUser = new User({ name, cpf, validity });
+  await newUser.save();
+  return newUser;
 };
 
 const getUserByCPF = async (cpf) => {
-  return await User.findOne({ cpf });
+  const user = await User.findOne({ cpf });
+  return user;
 };
 
 module.exports = {
