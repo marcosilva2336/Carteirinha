@@ -1,34 +1,42 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
+const s3Client = require('./config/s3');
+const { ListBucketsCommand } = require('@aws-sdk/client-s3');
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+app.use(express.json());
 
-// Conectar ao MongoDB
+app.use('/api/users', userRoutes);
+app.use('/api/upload', uploadRoutes);
+
+const PORT = process.env.PORT || 5000;
+
+const testS3Connection = async () => {
+  try {
+    const command = new ListBucketsCommand({});
+    const data = await s3Client.send(command);
+    console.log('Buckets disponíveis no S3:', data.Buckets);
+  } catch (err) {
+    console.log('Erro ao conectar ao S3:', err);
+  }
+};
+
 mongoose.connect(process.env.DATABASE_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
-
-mongoose.connection.on('connected', () => {
-  console.log('Conectado ao MongoDB');
-});
-
-mongoose.connection.on('error', (err) => {
-  console.log(`Erro ao conectar ao MongoDB: ${err}`);
-});
-
-app.use(bodyParser.json());
-
-app.use('/users', userRoutes);
-app.use('/upload', uploadRoutes);
-
-app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
-});
+})
+  .then(() => {
+    console.log('Conectado ao MongoDB');
+    app.listen(PORT, () => {
+      console.log(`Servidor rodando na porta ${PORT}`);
+      testS3Connection(); // Testa a conexão com o S3 ao iniciar o servidor
+    });
+  })
+  .catch((error) => {
+    console.error('Erro ao conectar ao MongoDB:', error);
+  });

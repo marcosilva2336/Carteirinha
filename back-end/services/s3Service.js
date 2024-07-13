@@ -1,14 +1,22 @@
-const s3 = require('../config/s3');
+const { PutObjectCommand } = require('@aws-sdk/client-s3');
+const s3Client = require('../config/s3');
 
-const uploadFile = (fileContent, fileName, mimeType) => {
+const uploadFile = async (buffer, filename, mimetype) => {
   const params = {
-    Bucket: process.env.AWS_BUCKET_NAME,
-    Key: fileName,
-    Body: fileContent,
-    ContentType: mimeType,
+    Bucket: process.env.S3_BUCKET,
+    Key: `${Date.now()}_${filename}`,
+    Body: buffer,
+    ContentType: mimetype,
   };
 
-  return s3.upload(params).promise();
+  try {
+    const command = new PutObjectCommand(params);
+    const data = await s3Client.send(command);
+    return data;
+  } catch (err) {
+    console.log('Erro ao fazer upload para o S3:', err);
+    throw err;
+  }
 };
 
 module.exports = {
