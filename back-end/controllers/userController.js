@@ -32,8 +32,13 @@ exports.uploadPhoto = async (req, res) => {
   }
 
   try {
-    const result = await uploadService.uploadFile(req.file.buffer, req.file.originalname, req.file.mimetype);
-    res.status(200).send({ message: 'Upload realizado com sucesso', data: result });
+    const photoUrl = await uploadService.uploadFile(req.file.buffer, req.file.originalname, req.file.mimetype);
+    const { name, cpf } = req.body; // Adicione o nome e o CPF no corpo da requisição ao enviar a foto
+
+    // Cria o usuário com a URL da foto
+    const newUser = await userService.createUser(name, cpf, photoUrl);
+
+    res.status(200).send({ message: 'Upload realizado com sucesso', data: newUser });
   } catch (error) {
     res.status(500).send({ error: 'Erro ao salvar o arquivo no S3', details: error.message });
   }

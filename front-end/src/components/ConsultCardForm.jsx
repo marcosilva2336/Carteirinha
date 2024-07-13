@@ -1,22 +1,24 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Container, Typography, Box, Grid, Button, TextField, Alert } from '@mui/material';
-import { CardContext } from '../context/CardContext';
-import { FormContainer, PageContainer, PreviewImage } from '../styles/ConsultCardFormStyles';
+import { useRouter } from 'next/router';
+import { getUserByCPF } from '../services/api';
+import { FormContainer, PageContainer } from '../styles/ConsultCardFormStyles';
 
 const ConsultCardForm = () => {
-  const { name, photo } = useContext(CardContext);
-  const [inputName, setInputName] = useState('');
   const [inputCpf, setInputCpf] = useState('');
   const [error, setError] = useState('');
-  const [cardFound, setCardFound] = useState(false);
+  const router = useRouter();
 
-  const handleSearch = () => {
-    if (inputName === name && inputCpf === '12345678900') { // Aqui você deve fazer a lógica de busca do CPF
-      setCardFound(true);
-      setError('');
-    } else {
-      setCardFound(false);
-      setError('Cartão não encontrado. Verifique os dados e tente novamente.');
+  const handleSearch = async () => {
+    try {
+      const user = await getUserByCPF(inputCpf);
+      if (user) {
+        router.push(`/card-details?cpf=${inputCpf}`);
+      } else {
+        setError('Cartão não encontrado. Verifique os dados e tente novamente.');
+      }
+    } catch (err) {
+      setError('Erro ao buscar o cartão. Tente novamente mais tarde.');
     }
   };
 
@@ -35,15 +37,6 @@ const ConsultCardForm = () => {
           <Grid item xs={12}>
             <TextField 
               fullWidth
-              label="Nome Completo"
-              variant="outlined"
-              value={inputName}
-              onChange={(e) => setInputName(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField 
-              fullWidth
               label="CPF"
               variant="outlined"
               value={inputCpf}
@@ -56,13 +49,6 @@ const ConsultCardForm = () => {
             </Button>
           </Grid>
         </Grid>
-        {cardFound && (
-          <Box mt={4} textAlign="center">
-            <Typography variant="h6">{name}</Typography>
-            <PreviewImage src={photo} alt="Foto do Cartão" />
-            <Typography variant="body1">CPF: {inputCpf}</Typography>
-          </Box>
-        )}
       </FormContainer>
     </PageContainer>
   );
