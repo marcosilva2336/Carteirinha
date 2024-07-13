@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoutes');
-const uploadRoutes = require('./routes/uploadRoutes');
 const s3Client = require('./config/s3');
 const { ListBucketsCommand } = require('@aws-sdk/client-s3');
 
@@ -12,7 +11,6 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/users', userRoutes);
-app.use('/api/upload', uploadRoutes);
 
 const PORT = process.env.PORT || 5000;
 
