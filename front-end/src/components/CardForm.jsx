@@ -7,16 +7,17 @@ import SaveButton from './SaveButton';
 import CpfInput from './CpfInput';
 import { FormContainer, FormGridContainer, UploadWrapper, PreviewImage, PageContainer } from '../styles/CardFormStyles';
 import { CardContext } from '../context/CardContext';
+import { createUser, uploadPhoto } from '../services/api'; // Importando as funções
 
 const CardForm = () => {
-  const { name, photo, setExpiryDate } = useContext(CardContext);
+  const { name, cpf, photo, setExpiryDate } = useContext(CardContext);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const router = useRouter(); 
 
-  const handleSave = () => {
-    if (!name || !photo) {
+  const handleSave = async () => {
+    if (!name || !cpf || !photo) {
       setError('Por favor, preencha todos os campos.');
       return;
     }
@@ -24,11 +25,23 @@ const CardForm = () => {
       setError('Você deve aceitar os termos.');
       return;
     }
-    setExpiryDate(new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)); // 1 year from now
-    setSuccess(true);
-    setTimeout(() => {
-      router.push('/card-preview');
-    }, 2000); // Delay de 2 segundos antes de redirecionar
+
+    try {
+      // Cria o usuário
+      await createUser(name, cpf);
+
+      // Faz upload da foto
+      const file = new File([photo], `${name}.${photo.split(';')[0].split('/')[1]}`, { type: photo.split(';')[0].split(':')[1] });
+      await uploadPhoto(file);
+
+      setExpiryDate(new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)); // 1 year from now
+      setSuccess(true);
+      setTimeout(() => {
+        router.push('/card-preview');
+      }, 2000); // Delay de 2 segundos antes de redirecionar
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (

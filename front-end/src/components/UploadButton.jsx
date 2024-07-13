@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { CardContext } from '../context/CardContext';
-import { Button, Box, Typography } from '@mui/material';
+import { Button, Box } from '@mui/material';
 
 const UploadButton = () => {
   const { setPhoto } = useContext(CardContext);
@@ -24,7 +24,7 @@ const UploadButton = () => {
         UPLOAD FOTO
         <input type="file" hidden onChange={handleUpload} />
       </Button>
-      
+      {fileName && <p>{fileName}</p>}
     </Box>
   );
 };
