@@ -12,7 +12,7 @@ const CardDetails = () => {
     return (
       <PageContainer>
         <Container>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h5" gutterBottom align='center'>
             Nenhum cartão encontrado
           </Typography>
         </Container>
