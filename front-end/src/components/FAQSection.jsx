@@ -65,7 +65,7 @@ const FAQSection = () => {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
-                      Você pode recuperar sua senha através da opção 'Esqueci minha senha' na tela de login.
+                      Você pode recuperar sua senha através da opção &#39;Esqueci minha senha&#39; na tela de login.
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
