@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { Container, Typography, Box, CardContent } from '@mui/material';
-import { StyledCard, Logo, Name, Validity, ExpiryDate } from '../styles/CardPreviewStyles'; 
+import { StyledCard, StyledCardMedia, Name, Validity, ExpiryDate } from '../styles/CardPreviewStyles';
 import { PageContainer } from '../styles/CardFormStyles';
 
 const CardDetails = () => {
