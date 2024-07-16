@@ -7,7 +7,7 @@ export const StyledCard = styled(Card)(({ theme }) => ({
   borderRadius: 16,
   border: '2px solid #000',
   textAlign: 'center',
-  padding: '16px',
+  padding: '32px 16px',
 }));
 
 export const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
@@ -18,8 +18,12 @@ export const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   border: '2px solid #4caf50',
 }));
 
-export const Logo = styled('img')(({ theme }) => ({
-  marginBottom: 16,
+export const Logo = styled(Typography)(({ theme }) => ({
+  fontSize: '1.25rem',
+  fontWeight: 'bold',
+  background: 'linear-gradient(239deg, #476FD6 10%, #1C3F99 90%)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
 }));
 
 export const Name = styled(Typography)(({ theme }) => ({
@@ -30,12 +34,15 @@ export const Name = styled(Typography)(({ theme }) => ({
 
 export const Validity = styled(Typography)(({ theme }) => ({
   marginTop: 16,
-  fontSize: '1rem',
+  fontSize: '1.2rem',
   color: 'grey',
 }));
 
 export const ExpiryDate = styled(Typography)(({ theme }) => ({
   fontSize: '1.25rem',
   fontWeight: 'bold',
-  color: '#4caf50',
+  background: 'linear-gradient(239deg, #476FD6 10%, #1C3F99 90%)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
 }));
+

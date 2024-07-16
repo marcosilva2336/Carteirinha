@@ -11,8 +11,9 @@ const uploadFile = async (buffer, filename, mimetype) => {
 
   try {
     const command = new PutObjectCommand(params);
-    const data = await s3Client.send(command);
-    return data;
+    await s3Client.send(command);
+    const url = `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${params.Key}`;
+    return url;
   } catch (err) {
     console.log('Erro ao fazer upload para o S3:', err);
     throw err;

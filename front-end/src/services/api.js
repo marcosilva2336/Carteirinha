@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api'; // ajuste se necessário
+const API_BASE_URL = 'http://localhost:5000/api';
 
 export const createUser = async (name, cpf) => {
   try {
@@ -8,6 +8,15 @@ export const createUser = async (name, cpf) => {
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message || 'Erro ao criar usuário');
+  }
+};
+
+export const getUserByCPF = async (cpf) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/users/${cpf}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message || 'Erro ao buscar usuário');
   }
 };
 

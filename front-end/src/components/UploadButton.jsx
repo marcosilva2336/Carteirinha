@@ -24,7 +24,6 @@ const UploadButton = () => {
         UPLOAD FOTO
         <input type="file" hidden onChange={handleUpload} />
       </Button>
-      {fileName && <p>{fileName}</p>}
     </Box>
   );
 };
