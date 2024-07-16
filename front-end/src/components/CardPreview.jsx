@@ -3,7 +3,7 @@ import { CardContext } from '../context/CardContext';
 import { Container, Box, CardContent, Button } from '@mui/material';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
-import { StyledCard, StyledCardMedia,Logo, Name, Validity, ExpiryDate } from '../styles/CardPreviewStyles';
+import { StyledCard, StyledCardMedia, Logo, Name, Validity, ExpiryDate } from '../styles/CardPreviewStyles';
 
 
 const CardPreview = () => {
